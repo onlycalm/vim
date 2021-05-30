@@ -17,14 +17,17 @@
 "                指令安装（sudo apt-get install ripgrep）。Leaderf可以自动
 "                管理gtags，可以通过gtags进行快捷搜索，在Ubuntu中安装gtags
 "                （sudo apt-get install global）。默认将gtags产物文件保存在
-"                ~/.VimCache/.LfCache/gtags/ 目录下，记得定期清除。
+"                ~/.vimcache/.lfcache/gtags/ 目录下，记得定期清除。
 "                Leaderf function对函数的搜索依赖Ctags。
 "             4、vim-gutentags自动管理Ctags，在Ubuntu上安装Ctags（sudo
-"                iapt-get nstall ctags)。
+"                iapt-get nstall ctags)。默认将gtags产物文件保存在
+"                ~/.vimcache/.gtcache/ 目录下，记得定期清除。
 "             5、Coc运行需要安装node，Ubuntu下运行指令（sudo apt-get install
 "                clangd）安装。需要安装cmake用于生成compile_commands.json
 "                文件，使其找到头文件和源文件。在Ubuntu中安装cmake输入指
 "                令（sudo apt-get install cmake）。Coc既补全又检查语法。
+"             6、clangd会将缓存文件放在 ~/.clangd 目录下，记得定期删除。
+"             7、startify的sessions目录默认为 ~/.vim/session 。
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 call plug#begin('~/.vim/plugged')
@@ -43,6 +46,8 @@ Plug 'neoclide/coc.nvim', {'branch' : 'release'}                     "代码补�
 Plug 'mhinz/vim-signify'                                             "代码修改行提示。
 Plug 'preservim/tagbar'                                              "代码导航。
 Plug 'junegunn/vim-easy-align'                                       "代码对齐
+Plug 'voldikss/vim-translator'                                       "翻译
+Plug 'mhinz/vim-startify'                                            "启动界面
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -128,6 +133,16 @@ nmap <F3> :TagbarToggle<CR>
 nmap <leader>a <Plug>(EasyAlign)
 "可视模式下使用对齐规则。
 vmap <leader>a <Plug>(EasyAlign)
+
+"voldikss/vim-translator
+"普通模式下翻译光标下英文字符串，在命令行显示翻译结果。
+nmap <silent> <Leader>tt <Plug>Translate
+"可视模式下翻译选中英文字符串，在命令行显示翻译结果。
+vmap <silent> <Leader>tt <Plug>TranslateV
+"普通模式下翻译光标下英文字符串，在窗口显示翻译结果。
+nmap <silent> <Leader>tw <Plug>TranslateW
+"可视模式下翻译光标下英文字符串，在窗口显示翻译结果。
+vmap <silent> <Leader>tw <Plug>TranslateWV
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "基础配置                                                                     "
@@ -246,11 +261,11 @@ let g:Lf_WindowPosition = 'popup'                          "使能浮动窗口�
 let g:Lf_PreviewInPopup = 1                                "使能按ctrl p键在弹出窗口中预览结果。
 let g:Lf_HideHelp = 1                                      "隐藏帮助信息。
 let g:Lf_UseCache = 0
-let g:Lf_CacheDirectory = expand('~/.VimCache/')           "设置缓存根目录。
+let g:Lf_CacheDirectory = expand('~/.vimcache/')           "设置缓存根目录。
 let g:Lf_StlSeparator = { 'left': '', 'right': '' }      "分隔符号。
 
 "gtags配置。
-let g:Lf_GtagsAutoGenerate = 1                             "自动生成gtags数据库。保存在~/.VimCache/.LfCache/gtags/。
+let g:Lf_GtagsAutoGenerate = 1                             "自动生成gtags数据库。保存在~/.vimcache/.lfcache/gtags/。
 let g:Lf_RootMarkers = ['.git', '.svn']                    "工程根目录标识。
 let g:Lf_Gtagslabel = 'native-pygments'
 
@@ -277,7 +292,7 @@ let g:surround_no_mappings = 0                             "使用默认的按�
 "ludovicchabant/vim-gutentags
 let g:gutentags_project_root = ['.git', '.svn']            "工程根目录标识。
 let g:gutentags_ctags_tagfile = '.tags'                    "生成数据文件名称。
-let g:gutentags_cache_dir = expand('~/.VimCache/.GtCache') "指定缓存根目录，ctags保存在该目录下。
+let g:gutentags_cache_dir = expand('~/.vimcache/.gtcache') "指定缓存根目录，ctags保存在该目录下。
 
 "Ctags配置参数。
 let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
@@ -348,3 +363,50 @@ let g:easy_align_delimiters = {
 \     'stick_to_left': 0
 \   }
 \ }
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"voldikss/vim-translator
+let g:translator_window_type = 'popup'                     "弹出窗口中显示。
+let g:translator_target_lang = 'zh'                        "目标语言为中文。
+let g:translator_source_lang = 'auto'                      "源语言自动识别。
+"let g:translator_proxy_url = 'socks5://127.0.0.1:1080'
+"使用的翻译工具。
+let g:translator_default_engines = ['bing', 'google', 'haici', 'youdao']
+
+"翻译Window的高亮配置。
+hi def link TranslatorQuery             Identifier
+hi def link TranslatorDelimiter         Special
+hi def link TranslatorExplain           Statement
+
+"窗口背景。
+hi def link Translator                  Normal
+hi def link TranslatorBorder            NormalFloat
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"mhinz/vim-startify
+let g:startify_disable_at_vimenter = 1                     "启动Vim时启动Startify
+
+"设置书签。
+let g:startify_bookmarks = [
+    \ '~/.vimrc'
+    \ ]
+
+"起始页显示的列表长度。
+let g:startify_files_number = 20
+"加载session目录下的记录。
+let g:startify_session_autoload = 1
+"过滤列表，支持正则表达式。
+let g:startify_skiplist = [
+    \ '/.git/',
+    \ '/.svn/'
+    \ ]
+
+"新tab自动打开Startify，启动时打开会与NEARDTree冲突。
+autocmd BufWinEnter *
+    \ if !exists('t:startify_new_tab')
+    \     && empty(expand('%'))
+    \     && empty(&l:buftype)
+    \     && &l:modifiable |
+    \   let t:startify_new_tab = 1 |
+    \   Startify |
+    \ endif
