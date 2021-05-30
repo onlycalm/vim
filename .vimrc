@@ -369,7 +369,7 @@ let g:easy_align_delimiters = {
 let g:translator_window_type = 'popup'                     "弹出窗口中显示。
 let g:translator_target_lang = 'zh'                        "目标语言为中文。
 let g:translator_source_lang = 'auto'                      "源语言自动识别。
-"let g:translator_proxy_url = 'socks5://127.0.0.1:1080'
+let g:translator_proxy_url = 'socks5://127.0.0.1:1080'
 "使用的翻译工具。
 let g:translator_default_engines = ['bing', 'google', 'haici', 'youdao']
 
