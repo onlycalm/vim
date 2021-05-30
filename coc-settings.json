@@ -1,0 +1,18 @@
+{
+  "languageserver":
+  {
+    "clangd":
+    {
+      "command": "clangd",
+      "rootPatterns": [".git/", ".svn/"],
+      "filetypes": ["c", "cc", "cpp", "c++", "objc", "objcpp"]
+    }
+  },
+
+  "diagnostic":
+  {
+    "enableSign": "true",
+    "errorSign": "✘",
+    "warningSign": "!"
+  }
+}
