@@ -2,6 +2,7 @@
 "File: .vimrc                                                                 "
 "author: Calm                                                                 "
 "Data: 2021-05-22                                                             "
+"Testing environment: WSL Ubuntu v20.04 LTS.                                  "
 "Description: 正确使用此配置文件请按以下操作:                                 "
 "             1、将Github上junegunn/vim-plug插件的plug.vim拷贝到              "
 "                ~/.vim/autoload，目录下，没有则新建。                        "
@@ -45,9 +46,9 @@ Plug 'ludovicchabant/vim-gutentags'                                  "自动管�
 Plug 'neoclide/coc.nvim', {'branch' : 'release'}                     "代码补全。
 Plug 'mhinz/vim-signify'                                             "代码修改行提示。
 Plug 'preservim/tagbar'                                              "代码导航。
-Plug 'junegunn/vim-easy-align'                                       "代码对齐
-Plug 'voldikss/vim-translator'                                       "翻译
-Plug 'mhinz/vim-startify'                                            "启动界面
+Plug 'junegunn/vim-easy-align'                                       "代码对齐。
+Plug 'voldikss/vim-translator'                                       "翻译。
+Plug 'mhinz/vim-startify'                                            "启动界面。
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -86,11 +87,11 @@ noremap <C-F> :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR><CR
 noremap <Leader>fr :<C-U>Leaderf! rg --recall<CR>
 
 "搜索当前光标下函数引用，如果搜索结果只有一个则直接跳转。
-noremap <leader>fR :<C-U><C-R>=printf("Leaderf! gtags -r %s --auto-jump", expand("<cword>"))<CR><CR>
+noremap <leader>fc :<C-U><C-R>=printf("Leaderf! gtags -r %s --auto-jump", expand("<cword>"))<CR><CR>
 "搜索当前光标下函数定义，如果搜索结果只有一个则直接跳转。
 noremap <leader>fd :<C-U><C-R>=printf("Leaderf! gtags -d %s --auto-jump", expand("<cword>"))<CR><CR>
 "打开上一次gtags搜索窗口。
-noremap <leader>fo :<C-U><C-R>=printf("Leaderf! gtags --recall %s", "")<CR><CR>
+noremap <leader>fR :<C-U><C-R>=printf("Leaderf! gtags --recall %s", "")<CR><CR>
 "跳转到下一个搜索结果。
 noremap <leader>fn :<C-U><C-R>=printf("Leaderf gtags --next %s", "")<CR><CR>
 "跳转到上一个搜索结果。
@@ -155,6 +156,10 @@ set cursorline                         "高亮光标所在行。
 set hlsearch                           "高亮搜索。
 set incsearch                          "搜索键入时开启高亮。
 set laststatus=2                       "底部状态栏始终开启，1: 关闭，2: 开启。
+"修改不同模式光标且带闪烁不闪屏，该配置适用于WSL。
+let &t_SI = "\<Esc>[5 q"
+let &t_SR = "\<Esc>[3 q"
+let &t_EI = "\<Esc>[1 q"
 
 "对齐
 set autoindent                         "缩进自动对齐。
