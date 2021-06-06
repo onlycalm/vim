@@ -52,6 +52,7 @@ Plug 'voldikss/vim-translator'                                "翻译。
 Plug 'mhinz/vim-startify'                                     "启动界面。
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}           "多光标操作。
 Plug 'itchyny/vim-cursorword'                                 "实时高亮同光标下字符串。
+Plug 'vim-scripts/a.vim'                                      "c/h跳转。
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -177,13 +178,13 @@ let g:VM_maps['Redo']               = '<c-r>' "Redo.
 "基础配置                                                                     "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "显示
-syntax on        "开启语法高亮。
-set number       "显示行号。
-set cursorcolumn "高亮光标所在列。
-set cursorline   "高亮光标所在行。
-set hlsearch     "高亮搜索。
-set incsearch    "搜索键入时开启高亮。
-set laststatus=2 "底部状态栏始终开启，1: 关闭，2: 开启。
+syntax on             "开启语法高亮。
+set number            "显示行号。
+set cursorcolumn      "高亮光标所在列。
+set cursorline        "高亮光标所在行。
+set hlsearch          "高亮搜索。
+set incsearch         "搜索键入时开启高亮。
+set laststatus=2      "底部状态栏始终开启，1: 关闭，2: 开启。
 "修改不同模式光标且带闪烁不闪屏，该配置适用于WSL。
 let &t_SI = "\<Esc>[5 q"
 let &t_SR = "\<Esc>[3 q"
