@@ -50,7 +50,7 @@ Plug 'preservim/tagbar'                                       "代码导航。
 Plug 'junegunn/vim-easy-align'                                "代码对齐。
 Plug 'voldikss/vim-translator'                                "翻译。
 Plug 'mhinz/vim-startify'                                     "启动界面。
-Plug 'terryma/vim-multiple-cursors'                           "多光标操作
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}           "多光标操作。
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -70,6 +70,7 @@ inoremap <c-l> <right>
 nnoremap <F2> :NERDTreeToggle<CR>
 
 "Yggdroot/LeaderF
+"按键映射前缀: <leader>f。
 "文件搜索。
 nnoremap <silent> <Leader>ff :Leaderf file<CR>
 "历史打开过的文件。
@@ -100,6 +101,7 @@ noremap <leader>fn :<C-U><C-R>=printf("Leaderf gtags --next %s", "")<CR><CR>
 noremap <leader>fp :<C-U><C-R>=printf("Leaderf gtags --previous %s", "")<CR><CR>
 
 "preservim/nerdcommenter
+"按键映射前缀: <leader>c。
 "\cc注释当前或选中行。
 map <silent> <leader>cc <plug>NERDCommenterComment
 "\cu取消当前行或选中行注释。
@@ -114,10 +116,6 @@ map <silent> <leader>c$ <plug>NERDCommenterToEOL
 map <silent> <leader>cA <plug>NERDCommenterAppend
 "\ca转换注释格式，比如//和/**/。
 map <silent> <leader>ca <plug>NERDCommenterAltDelims
-
-"ntpeters/vim-better-whitespace
-"删除文件内所有行末空格。
-nnoremap <silent> <leader>sw :StripWhitespace<cr>
 
 "tpope/vim-surround
 "默认按键映射。
@@ -135,21 +133,23 @@ nmap <silent> <c-l> <Plug>(coc-diagnostic-next)
 
 "mhinz/vim-signify
 "跳转到上一个修改处。
-nmap <c-p> <plug>(signify-prev-hunk)
+nmap <c-k> <plug>(signify-prev-hunk)
 "跳转到下一个修改处。
-nmap <c-n> <plug>(signify-next-hunk)
+nmap <c-j> <plug>(signify-next-hunk)
 
 "preservim/tagbar
 "开关显示Tagbar。
 nmap <F3> :TagbarToggle<CR>
 
 "junegunn/vim-easy-align
+"按键映射前缀: <leader>a。
 "普通模式下使用对齐规则。
 nmap <leader>a <Plug>(EasyAlign)
 "可视模式下使用对齐规则。
 vmap <leader>a <Plug>(EasyAlign)
 
 "voldikss/vim-translator
+"按键映射前缀: <leader>t。
 "普通模式下翻译光标下英文字符串，在命令行显示翻译结果。
 nmap <silent> <Leader>tt <Plug>Translate
 "可视模式下翻译选中英文字符串，在命令行显示翻译结果。
@@ -159,13 +159,18 @@ nmap <silent> <Leader>tw <Plug>TranslateW
 "可视模式下翻译光标下英文字符串，在窗口显示翻译结果。
 vmap <silent> <Leader>tw <Plug>TranslateWV
 
-"terryma/vim-multiple-cursors
-let g:multi_cursor_start_word_key      = '<c-j>' "进入多光标模式并选中光标下字符串。
-let g:multi_cursor_select_all_word_key = '<c-a>' "进入多光标模式并选中所有同光标下的字符串。
-let g:multi_cursor_next_key            = '<c-j>' "选中下一个字符串。
-let g:multi_cursor_prev_key            = '<c-k>' "选中上一个字符串。
-let g:multi_cursor_skip_key            = '<c-w>' "弃权，跳过当前选中的字符串。
-let g:multi_cursor_quit_key            = '<Esc>' "退出多光标模式。
+"mg979/vim-visual-multi
+"按键映射前缀: <leader>v。
+let g:VM_maps = {}                            "取消默认按键映射。
+let g:VM_maps['Find Under']         = '<c-n>' "进入多光标模式并选中光标下字符串。
+let g:VM_maps['Find Subword Under'] = '<c-n>' "选中下一个字符串。
+let g:VM_maps['Find Next']          = 'n'     "往下查找并增加光标。
+let g:VM_maps['Find Prev']          = 'N'     "网上查找并增加光标。
+let g:VM_maps['Skip Region']        = 'q'     "跳过当前光标到下一个。
+let g:VM_maps['Remove Region']      = 'Q'     "取消当前光标。
+let g:VM_maps['Select All']         = '\vA'   "进入多光标模式并选中所有同光标下的字符串。
+let g:VM_maps['Undo']               = 'u'     "Undo.
+let g:VM_maps['Redo']               = '<c-r>' "Redo.
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "基础配置                                                                     "
@@ -222,8 +227,6 @@ autocmd VimEnter * NERDTree    "启动Vim时启动NEARDTree。
 autocmd StdinReadPre * let s:std_in = 1
 autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
 
-"Bug: 与ntpeters/vim-better-whitespace冲突。导致其保存删除空格功能失效，
-"需要将光标移到其他Window再移回才能生效。
 "如果启动时指定了文件，光标跳转到指定文件的Window。
 autocmd StdinReadPre * let s:std_in = 1
 autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
@@ -263,6 +266,7 @@ let g:airline_symbols.dirty = '⚡'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "ntpeters/vim-better-whitespace
+"Bug: 有时:w删除空格会失败，需要将光标移到其他Window再移回才能生效。
 let g:better_whitespace_enabled = 1         "开启行末空格高亮。
 let g:better_whitespace_ctermcolor = 'gray' "行末空格高亮颜色。
 let g:strip_whitespace_on_save = 1          "保存时删除文件内所有行末空格。
@@ -450,8 +454,7 @@ autocmd BufWinEnter *
     \ endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"terryma/vim-multiple-cursors
-let g:multi_cursor_use_default_mapping = 1   "不使用默认按键映射。
-let g:multi_cursor_support_imap = 0          "插入模式下不响应按键映射。
-let g:multi_cursor_exit_from_visual_mode = 1 "退出可视模式时退出多光标操作。
-let g:multi_cursor_exit_from_insert_mode = 1 "退出插入模式时退出多光标操作。
+"mg979/vim-visual-multi
+let g:VM_leader = '\\'                        "使用默认<Leader>键。
+let g:VM_mouse_mappings = 0                   "禁用鼠标操作。
+let g:VM_default_mappings = 0                 "取消默认按键映射。
