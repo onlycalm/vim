@@ -51,6 +51,7 @@ Plug 'junegunn/vim-easy-align'                                "代码对齐。
 Plug 'voldikss/vim-translator'                                "翻译。
 Plug 'mhinz/vim-startify'                                     "启动界面。
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}           "多光标操作。
+Plug 'itchyny/vim-cursorword'                                 "实时高亮同光标下字符串。
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -458,3 +459,11 @@ autocmd BufWinEnter *
 let g:VM_leader = '\\'                        "使用默认<Leader>键。
 let g:VM_mouse_mappings = 0                   "禁用鼠标操作。
 let g:VM_default_mappings = 0                 "取消默认按键映射。
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"itchyny/vim-cursorword
+let g:cursorword = 1                          "开启实时高亮同光标下字符串。
+let g:cursorword_highlight = 0                "取消使用默认的高亮配置，默认带下划线。
+let g:cursorword_delay = 50                   "设置刷新时间。
+hi CursorWord0 ctermbg=darkgrey guibg=darkgrey term=none cterm=none gui=none
+hi CursorWord1 ctermbg=darkgrey guibg=darkgrey term=none cterm=none gui=none
