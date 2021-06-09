@@ -74,22 +74,22 @@ nnoremap <F2> :NERDTreeToggle<CR>
 "Yggdroot/LeaderF
 "按键映射前缀: <leader>f。
 "文件搜索。
-nnoremap <silent> <Leader>ff :Leaderf file<CR>
+nnoremap <silent> <leader>ff :Leaderf file<CR>
 "历史打开过的文件。
-nnoremap <silent> <Leader>fm :Leaderf mru<CR>
+nnoremap <silent> <leader>fm :Leaderf mru<CR>
 "Buffer。
-nnoremap <silent> <Leader>fb :Leaderf buffer<CR>
+nnoremap <silent> <leader>fb :Leaderf buffer<CR>
 "函数搜索（仅当前文件里）。
-nnoremap <silent> <Leader>fF :Leaderf function<CR>
+nnoremap <silent> <leader>fF :Leaderf function<CR>
 "grep模糊搜索。
-nnoremap <silent> <Leader>frg :Leaderf rg<CR>
+nnoremap <silent> <leader>frg :Leaderf rg<CR>
 "搜索行。
-nnoremap <silent> <Leader>fl :Leaderf line<CR>
+nnoremap <silent> <leader>fl :Leaderf line<CR>
 
 "通过Leaderf rg搜索光标下的字符串，需按回车确认。
 noremap <C-F> :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR><CR>
 "打开最近一次Leaderf rg搜索窗口。
-noremap <Leader>fr :<C-U>Leaderf! rg --recall<CR>
+noremap <leader>fr :<C-U>Leaderf! rg --recall<CR>
 
 "搜索当前光标下函数引用，如果搜索结果只有一个则直接跳转。
 noremap <leader>fc :<C-U><C-R>=printf("Leaderf! gtags -r %s --auto-jump", expand("<cword>"))<CR><CR>
@@ -153,13 +153,13 @@ vmap <leader>a <Plug>(EasyAlign)
 "voldikss/vim-translator
 "按键映射前缀: <leader>t。
 "普通模式下翻译光标下英文字符串，在命令行显示翻译结果。
-nmap <silent> <Leader>tt <Plug>Translate
+nmap <silent> <leader>tt <Plug>Translate
 "可视模式下翻译选中英文字符串，在命令行显示翻译结果。
-vmap <silent> <Leader>tt <Plug>TranslateV
+vmap <silent> <leader>tt <Plug>TranslateV
 "普通模式下翻译光标下英文字符串，在窗口显示翻译结果。
-nmap <silent> <Leader>tw <Plug>TranslateW
+nmap <silent> <leader>tw <Plug>TranslateW
 "可视模式下翻译光标下英文字符串，在窗口显示翻译结果。
-vmap <silent> <Leader>tw <Plug>TranslateWV
+vmap <silent> <leader>tw <Plug>TranslateWV
 
 "mg979/vim-visual-multi
 "按键映射前缀: <leader>v。
@@ -347,9 +347,6 @@ let airline#extensions#coc#warning_symbol = '!:'
 let airline#extensions#coc#stl_format_err = '%E{[%e(#%fe)]}'
 let airline#extensions#coc#stl_format_warn = '%W{[%w(#%fw)]}'
 
-"保持光标时突出显示符号及其引用。
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
 "使用tab键触发补全。
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -457,14 +454,15 @@ autocmd BufWinEnter *
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "mg979/vim-visual-multi
-let g:VM_leader = '\\'                        "使用默认<Leader>键。
+let g:VM_leader = '\\'                        "使用默认<leader>键。
 let g:VM_mouse_mappings = 0                   "禁用鼠标操作。
 let g:VM_default_mappings = 0                 "取消默认按键映射。
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "itchyny/vim-cursorword
 let g:cursorword = 1                          "开启实时高亮同光标下字符串。
+let b:cursorword = 1                          "Buffer中也开启高亮。
 let g:cursorword_highlight = 0                "取消使用默认的高亮配置，默认带下划线。
-let g:cursorword_delay = 50                   "设置刷新时间。
+let g:cursorword_delay = 0                    "设置刷新时间。
 hi CursorWord0 ctermbg=darkgrey guibg=darkgrey term=none cterm=none gui=none
 hi CursorWord1 ctermbg=darkgrey guibg=darkgrey term=none cterm=none gui=none
