@@ -82,12 +82,14 @@ nnoremap <silent> <leader>fb :Leaderf buffer<CR>
 "函数搜索（仅当前文件里）。
 nnoremap <silent> <leader>fF :Leaderf function<CR>
 "grep模糊搜索。
-nnoremap <silent> <leader>frg :Leaderf rg<CR>
+nnoremap <silent> <leader>fg :Leaderf rg<CR>
 "搜索行。
 nnoremap <silent> <leader>fl :Leaderf line<CR>
 
-"通过Leaderf rg搜索光标下的字符串，需按回车确认。
-noremap <C-F> :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR><CR>
+"通过Leaderf rg在当前缓存中搜索光标下的字符串。
+noremap <leader>f<c-b> :<C-U><C-R>=printf("Leaderf! rg --current-buffer -e %s ", expand("<cword>"))<CR><CR>
+"通过Leaderf rg搜索光标下的字符串。
+noremap <leader>f<c-f> :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR><CR>
 "打开最近一次Leaderf rg搜索窗口。
 noremap <leader>fr :<C-U>Leaderf! rg --recall<CR>
 
@@ -128,6 +130,10 @@ map <silent> <leader>ca <plug>NERDCommenterAltDelims
 "S<char> 可视模式下，所选文本两侧添加环绕符。
 
 "neoclide/coc.nvim
+"tab 触发补全。
+"<c-l> 补全时触发补全函数参数列表。
+"<c-j> 函数补全时跳到下一个参数，普通模式或插入模式。
+"<c-k> 函数补全时跳到上一个参数，普通模式或插入模式。
 "跳转到上一个错误或警告信息。
 nmap <silent> <c-h> <Plug>(coc-diagnostic-prev)
 "跳转到下一个错误或警告信息。
@@ -195,19 +201,24 @@ set autoindent     "缩进自动对齐。
 set cindent        "设置c缩进风格。
 set smartindent    "设置智能自动对齐。
 
-                   "字符
+"字符
 set tabstop=4      "设置tab为4个space。
 set expandtab      "tab插入时替换为tabstop指定数目的space。
 set shiftwidth=4   "设置<<和>>移动4空格。
 
-                   "备份文件
+"备份文件
 set noundofile     "取消生成undo备份文件。
 set nobackup       "取消生成备份文件。
 set noswapfile     "取消生成交换备份文件。
 
-                   "控制
+"控制
 set mouse=a        "使能鼠标控制。
-set updatetime=300 "更新时间300ms。
+set updatetime=100 "更新时间100ms。
+
+"防止中文显示乱码。
+set termencoding=utf-8                                  "Vim所工作的终端字符编码格式。
+set encoding=utf8                                       "Vim内部使用的字符编码格式。
+set fileencodings=utf8,ucs-bom,gbk,cp936,gb2312,gb18030 "自动探测编码方式顺序。
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "插件配置                                                                     "
