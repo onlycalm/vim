@@ -57,6 +57,7 @@ Plug 'mhinz/vim-startify'                                     "启动界面。
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}           "多光标操作。
 Plug 'itchyny/vim-cursorword'                                 "实时高亮同光标下字符串。
 Plug 'vim-scripts/a.vim'                                      "c/h跳转。
+Plug 'terryma/vim-expand-region'                              "快速选中配对符内代码块。
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -183,6 +184,10 @@ let g:VM_maps['Remove Region']      = 'Q'     "取消当前光标。
 let g:VM_maps['Select All']         = '\vA'   "进入多光标模式并选中所有同光标下的字符串。
 let g:VM_maps['Undo']               = 'u'     "Undo.
 let g:VM_maps['Redo']               = '<c-r>' "Redo.
+
+"terryma/vim-expand-region
+"_缩小选中范围。
+"+扩展选中范围。
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "基础配置                                                                     "
