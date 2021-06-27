@@ -268,10 +268,11 @@ autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "vim-airline/vim-airline
-let g:airline_theme = "bubblegum"            "选择配色风格。
-let g:airline#extensions#tabline#enabled = 1 "显示窗口的tab和buffer。
-let g:airline_powerline_fonts = 1            "开启支持powerline字体。
-                                             "
+let g:airline_theme = "bubblegum"                          "选择配色风格。
+let g:airline#extensions#tabline#enabled = 1               "显示窗口的tab和buffer。
+let g:airline_powerline_fonts = 1                          "开启支持powerline字体。
+let g:airline#extensions#tabline#formatter = 'unique_tail' "顶部缓存只显示文件名。
+
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
@@ -295,6 +296,9 @@ let g:strip_whitespace_on_save = 1          "保存时删除文件内所有行�
 let g:strip_whitespace_confirm = 0          "关闭保存文件时删除行末空格的询问。
 let g:better_whitespace_operator = ''       "取消所有默认快捷键。
 let g:better_whitespace_blacklist = []      "清空黑名单，对所有文件有效。
+"markdown需要指定才能生效，即使没加入黑名单。
+:autocmd FileType markdown EnableWhitespace
+:autocmd FileType markdown EnableStripWhitespaceOnSave
 
 "Normal模式下高亮当前行空白字符。开启会使响应变慢。
 let g:current_line_whitespace_disabled_hard = 0
@@ -318,6 +322,7 @@ let g:Lf_HideHelp = 1                                 "隐藏帮助信息。
 let g:Lf_UseCache = 0
 let g:Lf_CacheDirectory = expand('~/.vimcache/')      "设置缓存根目录。
 let g:Lf_StlSeparator = { 'left': '', 'right': '' } "分隔符号。
+let g:Lf_ShowDevIcons = 0                             "不显示图标。
 
 "gtags配置。
 let g:Lf_GtagsAutoGenerate = 1                        "自动生成gtags数据库。保存在~/.vimcache/.lfcache/gtags/。
