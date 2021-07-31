@@ -34,6 +34,9 @@
 "             7、startify的sessions目录默认为 ~/.vim/session 。               "
 "             8、cmake指定gcc或clang编译c/c++，如使用clang编译需要给子系统    "
 "                Ubuntu安装clang，指令为（sudo apt-get install clang）。      "
+"             9、运行vim-translator需要执行指令                               "
+"                `sudo apt-get install python3-pip`安装pip，之后执行指令      "
+"                `pip install pysocks`安装pysocks。                           "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 call plug#begin('~/.vim/plugged')
