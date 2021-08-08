@@ -419,6 +419,12 @@ let g:easy_align_delimiters = {
 \     'delimiter_align': 'l',
 \     'ignore_groups':   ['!Comment']
 \   },
+\ '#': {
+\     'pattern':         '#',
+\     'right_margin':  0,
+\     'delimiter_align': 'l',
+\     'ignore_groups':   ['!Comment']
+\   },
 \ '[': {
 \     'pattern':       '[[\]]',
 \     'left_margin':   0,
