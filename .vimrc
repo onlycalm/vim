@@ -224,7 +224,7 @@ set nobackup       "取消生成备份文件。
 set noswapfile     "取消生成交换备份文件。
 
 "控制
-set mouse=         "关闭鼠标控制。
+set mouse=a        "使能鼠标控制。
 set updatetime=100 "更新时间100ms。
 
 "防止中文显示乱码。
