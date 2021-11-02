@@ -37,6 +37,17 @@
 "             9、运行vim-translator需要执行指令                               "
 "                `sudo apt-get install python3-pip`安装pip，之后执行指令      "
 "                `pip install pysocks`安装pysocks。                           "
+"             10、为了使itchyny/calendar.vim绑定Google Calendar，在终端       "
+"                 执行三条指令 `mkdir -p ~/.cache/calendar.vim/ &&            "
+"                 touch ~/.cache/calendar.vim/credentials.vim` ，             "
+"                 `chmod 700 ~/.cache/calendar.vim &&                         "
+"                 chmod 600 ~/.cache/calendar.vim/credentials.vim` ，         "
+"                 `vi ~/.cache/calendar.vim/credentials.vim` ，在文件中输入   "
+"                 以下三条内容 `let g:calendar_google_api_key = '...'` ，     "
+"                 `let g:calendar_google_client_id =                          "
+"                 '....apps.googleusercontent.com'` ，                        "
+"                 `let g:calendar_google_client_secret = '...'` ，相应修改为  "
+"                 自己的秘钥信息，然后重启Vim。                               "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 call plug#begin('~/.vim/plugged')
@@ -61,6 +72,7 @@ Plug 'mg979/vim-visual-multi', {'branch': 'master'}           "多光标操作�
 Plug 'itchyny/vim-cursorword'                                 "实时高亮同光标下字符串。
 Plug 'vim-scripts/a.vim'                                      "c/h跳转。
 Plug 'terryma/vim-expand-region'                              "快速选中配对符内代码块。
+Plug 'itchyny/calendar.vim'                                   "日历，可协同谷歌日历。
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -196,32 +208,32 @@ let g:VM_maps['Redo']               = '<c-r>' "Redo.
 "基础配置                                                                     "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "显示
-syntax on             "开启语法高亮。
-set number            "显示行号。
-set cursorcolumn      "高亮光标所在列。
-set cursorline        "高亮光标所在行。
-set hlsearch          "高亮搜索。
-set incsearch         "搜索键入时开启高亮。
-set laststatus=2      "底部状态栏始终开启，1: 关闭，2: 开启。
+syntax on        "开启语法高亮。
+set number       "显示行号。
+set cursorcolumn "高亮光标所在列。
+set cursorline   "高亮光标所在行。
+set hlsearch     "高亮搜索。
+set incsearch    "搜索键入时开启高亮。
+set laststatus=2 "底部状态栏始终开启，1: 关闭，2: 开启。
 "修改不同模式光标且带闪烁不闪屏，该配置适用于WSL。
 let &t_SI = "\<Esc>[5 q"
 let &t_SR = "\<Esc>[3 q"
 let &t_EI = "\<Esc>[1 q"
 
 "对齐
-set autoindent     "缩进自动对齐。
-set cindent        "设置c缩进风格。
-set smartindent    "设置智能自动对齐。
+set autoindent  "缩进自动对齐。
+set cindent     "设置c缩进风格。
+set smartindent "设置智能自动对齐。
 
 "字符
-set tabstop=4      "设置tab为4个space。
-set expandtab      "tab插入时替换为tabstop指定数目的space。
-set shiftwidth=4   "设置<<和>>移动4空格。
+set tabstop=4    "设置tab为4个space。
+set expandtab    "tab插入时替换为tabstop指定数目的space。
+set shiftwidth=4 "设置<<和>>移动4空格。
 
 "备份文件
-set noundofile     "取消生成undo备份文件。
-set nobackup       "取消生成备份文件。
-set noswapfile     "取消生成交换备份文件。
+set noundofile "取消生成undo备份文件。
+set nobackup   "取消生成备份文件。
+set noswapfile "取消生成交换备份文件。
 
 "控制
 set mouse=a        "使能鼠标控制。
@@ -284,7 +296,7 @@ let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
 let g:airline_symbols.branch = ''
-let g:airline_symbols.colnr = '℅'            "列标志，默认标志乱码。
+let g:airline_symbols.colnr = '℅' "列标志，默认标志乱码。
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = '☰'
 let g:airline_symbols.maxlinenr = ''
@@ -487,15 +499,22 @@ autocmd BufWinEnter *
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "mg979/vim-visual-multi
-let g:VM_leader = '\\'                        "使用默认<leader>键。
-let g:VM_mouse_mappings = 0                   "禁用鼠标操作。
-let g:VM_default_mappings = 0                 "取消默认按键映射。
+let g:VM_leader = '\\'        "使用默认<leader>键。
+let g:VM_mouse_mappings = 0   "禁用鼠标操作。
+let g:VM_default_mappings = 0 "取消默认按键映射。
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "itchyny/vim-cursorword
-let g:cursorword = 1                          "开启实时高亮同光标下字符串。
-let b:cursorword = 1                          "Buffer中也开启高亮。
-let g:cursorword_highlight = 0                "取消使用默认的高亮配置，默认带下划线。
-let g:cursorword_delay = 0                    "设置刷新时间。
+let g:cursorword = 1           "开启实时高亮同光标下字符串。
+let b:cursorword = 1           "Buffer中也开启高亮。
+let g:cursorword_highlight = 0 "取消使用默认的高亮配置，默认带下划线。
+let g:cursorword_delay = 0     "设置刷新时间。
 hi CursorWord0 ctermbg=darkgrey guibg=darkgrey term=none cterm=none gui=none
 hi CursorWord1 ctermbg=darkgrey guibg=darkgrey term=none cterm=none gui=none
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"itchyny/calendar.vim
+let g:calendar_date_endian = "big" "日期格式。
+let g:calendar_google_calendar = 1
+let g:calendar_google_task = 1
+source ~/.cache/calendar.vim/credentials.vim
