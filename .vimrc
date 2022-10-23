@@ -43,6 +43,8 @@
 "             7、coc-nvim使用clangd进行c/c++语法检查，因此在子系统Ubuntu下    "
 "                执行`sudo apt-get install clangd`安装。clangd会将缓存文件    "
 "                放在 ~/.clangd 目录下，记得定期删除。                        "
+"                安装好coc.nvim插件后在vim中输入 `CocConfig` 会自动创建       "
+"                coc-settings.json文件，将该仓库内的同名文件内容拷贝进去。    "
 "             8、startify的sessions目录默认为 ~/.vim/session 。               "
 "             9、cmake指定gcc或clang编译c/c++，如使用clang编译需要给子系统    "
 "                Ubuntu安装clang，指令为`sudo apt-get install clang`。        "
@@ -163,9 +165,6 @@ map <silent> <leader>ca <plug>NERDCommenterAltDelims
 
 "neoclide/coc.nvim
 "tab 触发补全。
-"<c-l> 补全时触发补全函数参数列表。
-"<c-j> 函数补全时跳到下一个参数，普通模式或插入模式。
-"<c-k> 函数补全时跳到上一个参数，普通模式或插入模式。
 "跳转到上一个错误或警告信息。
 nmap <silent> <c-h> <Plug>(coc-diagnostic-prev)
 "跳转到下一个错误或警告信息。
@@ -251,7 +250,7 @@ set noswapfile "取消生成交换备份文件。
 set mouse=a        "使能鼠标控制。
 set updatetime=100 "更新时间100ms。
 set nocompatible   "关闭兼容模式，不需要考虑兼容vi。
-set backspace=2    "退格键可以删除任意字符，解决Ubuntu下退格键不能删除字符问题。
+set backspace=2    "正常处理indent, eol, start等。
 
 "防止中文显示乱码。
 set termencoding=utf-8                                  "Vim所工作的终端字符编码格式。
@@ -402,15 +401,15 @@ let airline#extensions#coc#stl_format_err = '%E{[%e(#%fe)]}'
 let airline#extensions#coc#stl_format_warn = '%W{[%w(#%fw)]}'
 
 "使用tab键触发补全。
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
-endfunction
-
-inoremap <silent><expr> <Tab>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<Tab>" :
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
       \ coc#refresh()
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "mhinz/vim-signify
