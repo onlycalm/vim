@@ -3,7 +3,8 @@
 "author: Calm                                                                 "
 "Data: 2021-05-22                                                             "
 "Testing environment: Ubuntu v20.04 LTS                                       "
-"                     vim v8.2                                                "
+"                     vim v8.2.4919                                           "
+"                     nodejs v16.17.1                                         "
 "Description: 正确使用此配置文件请按以下操作:                                 "
 "             1、将此文件拷贝到~目录（即home目录）下。                        "
 "             2、将Github上junegunn/vim-plug插件的plug.vim拷贝到              "
@@ -12,7 +13,8 @@
 "             3、建议在Windows Terminal终端的Windows PowerShell中运行WSL，    "
 "                运行Vim，将终端字体设置为Hack-Regular，否则ailine和NEARDTree "
 "                无法正常显示。可在Github上项目powerline/fonts下载安装。      "
-"                字体大小建议设置为10号。                                     "
+"                字体大小建议设置为10号。Linux下将需要的字体文件夹拷贝到      "
+"                /usr/share/fonts 目录然后修改Terminal的字体配置。            "
 "             4、为了使用Leaderf，需要给Ubuntu安装gcc`sudo apt-get install    "
 "                gcc`以及python-dev`根据安装的python版本对应安装，比如        "
 "                python3 v3.8.5，则执行sudo apt-get install python3.8-dev`。  "
@@ -23,21 +25,28 @@
 "                `sudo apt-get install global`。默认将gtags产物文件保存在     "
 "                ~/.vimcache/.lfcache/gtags/ 目录下，记得定期清除。           "
 "                Leaderf function对函数的搜索依赖Ctags。                      "
+"                Leaderf需要vim支持python3特性，通过源码安装时要注意。        "
 "             5、vim-gutentags自动管理Ctags，在Ubuntu上安装Ctags`sudo         "
 "                apt-get install ctags)。默认将gtags产物文件保存在            "
 "                ~/.vimcache/.gtcache/ 目录下，记得定期清除。                 "
-"             6、Coc运行需要安装node，Ubuntu下运行指令`sudo apt-get install   "
-"                nodejs`安装。需要安装cmake用于生成compile_commands.json      "
+"             6、Coc运行需要安装node，Ubuntu下依次执行运行指令                "
+"                `sudo apt-get install curl" , `sudo apt-get sudo curl -sL    "
+"                https://deb.nodesource.com/setup_16.x | bash -h` ，这里安装  "
+"                的是v16版本，需要其他版本可以修改指令，要求至少v14。         "
+"                `sudo apt-get install nodejs` 。                             "
+"                需要安装cmake用于生成compile_commands.json                   "
 "                文件，使其找到头文件和源文件。在Ubuntu中安装cmake输入指      "
 "                令`sudo apt-get install cmake`。Coc既补全又检查语法。        "
 "                Coc会在 ~/.config/coc 目录存放临时文件。                     "
+"                还需要为coc部署yarn，依次执行指令 `sudo npm intall -g yarn`  "
+"                `cd ~/.vim/plugged/coc.nvim/` `yarn install` `yarn build`    "
 "             7、coc-nvim使用clangd进行c/c++语法检查，因此在子系统Ubuntu下    "
 "                执行`sudo apt-get install clangd`安装。clangd会将缓存文件    "
 "                放在 ~/.clangd 目录下，记得定期删除。                        "
 "             8、startify的sessions目录默认为 ~/.vim/session 。               "
 "             9、cmake指定gcc或clang编译c/c++，如使用clang编译需要给子系统    "
 "                Ubuntu安装clang，指令为`sudo apt-get install clang`。        "
-"             10、运行vim-translator需要执行指令                               "
+"             10、运行vim-translator需要执行指令                              "
 "                `sudo apt-get install python3-pip`安装pip，之后执行指令      "
 "                `pip install pysocks`安装pysocks。                           "
 "             11、为了使itchyny/calendar.vim绑定Google Calendar，在终端       "
@@ -241,6 +250,8 @@ set noswapfile "取消生成交换备份文件。
 "控制
 set mouse=a        "使能鼠标控制。
 set updatetime=100 "更新时间100ms。
+set nocompatible   "关闭兼容模式，不需要考虑兼容vi。
+set backspace=2    "退格键可以删除任意字符，解决Ubuntu下退格键不能删除字符问题。
 
 "防止中文显示乱码。
 set termencoding=utf-8                                  "Vim所工作的终端字符编码格式。
