@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.14)
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS 1)      #使能生成compile_command.json文件
+
 set(CMAKE_SYSTEM_NAME Linux)
 
 SET (CMAKE_C_COMPILER "/usr/bin/clang")
@@ -46,6 +48,3 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin)
 add_executable(${PROJECT_NAME} ${SRC})
 
 target_link_libraries(${PROJECT_NAME} pthread dl ${LIB_NAME})
-
-set(CMAKE_EXPORT_COMPILE_COMMANDS 1)      #使能生成compile_command.json文件
-
