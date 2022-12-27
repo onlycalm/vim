@@ -87,6 +87,7 @@ Plug 'itchyny/vim-cursorword'                                 "实时高亮同�
 Plug 'vim-scripts/a.vim'                                      "c/h跳转。
 Plug 'terryma/vim-expand-region'                              "快速选中配对符内代码块。
 Plug 'itchyny/calendar.vim'                                   "日历，可协同谷歌日历。
+Plug 'wakatime/vim-wakatime'                                  "代码行为自动统计工具。
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
