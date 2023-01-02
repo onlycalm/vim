@@ -539,6 +539,7 @@ autocmd BufWinEnter *
 let g:VM_leader = '\\'        "使用默认<leader>键。
 let g:VM_mouse_mappings = 0   "禁用鼠标操作。
 let g:VM_default_mappings = 0 "取消默认按键映射。
+let g:VM_highlight_matches = 'hi Search ctermbg=darkgrey guibg=darkgrey term=none cterm=none gui=none'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "itchyny/vim-cursorword
