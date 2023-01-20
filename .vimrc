@@ -88,6 +88,7 @@ Plug 'vim-scripts/a.vim'                                      "c/h跳转。
 Plug 'terryma/vim-expand-region'                              "快速选中配对符内代码块。
 Plug 'itchyny/calendar.vim'                                   "日历，可协同谷歌日历。
 Plug 'wakatime/vim-wakatime'                                  "代码行为自动统计工具。
+Plug 'voldikss/vim-floaterm'                                  "浮动终端。
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -189,15 +190,15 @@ nmap <leader>a <Plug>(EasyAlign)
 vmap <leader>a <Plug>(EasyAlign)
 
 "voldikss/vim-translator
-"按键映射前缀: <leader>t。
+"按键映射前缀: <leader>T。
 "普通模式下翻译光标下英文字符串，在命令行显示翻译结果。
-nmap <silent> <leader>tt <Plug>Translate
+nmap <silent> <leader>Tt <Plug>Translate
 "可视模式下翻译选中英文字符串，在命令行显示翻译结果。
-vmap <silent> <leader>tt <Plug>TranslateV
+vmap <silent> <leader>Tt <Plug>TranslateV
 "普通模式下翻译光标下英文字符串，在窗口显示翻译结果。
-nmap <silent> <leader>tw <Plug>TranslateW
+nmap <silent> <leader>Tw <Plug>TranslateW
 "可视模式下翻译光标下英文字符串，在窗口显示翻译结果。
-vmap <silent> <leader>tw <Plug>TranslateWV
+vmap <silent> <leader>Tw <Plug>TranslateWV
 
 "mg979/vim-visual-multi
 "按键映射前缀: <leader>v。
@@ -215,6 +216,14 @@ let g:VM_maps['Redo']               = '<c-r>' "Redo.
 "terryma/vim-expand-region
 "_缩小选中范围。
 "+扩展选中范围。
+
+"voldikss/vim-floaterm
+"按键映射前缀: <leader>t。
+let g:floaterm_keymap_new = '<Leader>tw'     "新建终端。
+let g:floaterm_keymap_toggle = '<Leader>tt'  "终端显隐。
+let g:floaterm_keymap_prev = '<Leader>tp'    "上一个终端。
+let g:floaterm_keymap_next = '<Leader>tn'    "下一个终端。
+let g:floaterm_keymap_kill = '<Leader>tk'    "关掉终端。
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "基础配置                                                                     "
@@ -556,3 +565,8 @@ let g:calendar_date_endian = "big" "日期格式。
 let g:calendar_google_calendar = 1
 let g:calendar_google_task = 1
 source ~/.cache/calendar.vim/credentials.vim
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"voldikss/vim-floaterm
+let g:floaterm_wintype = 'float'             "浮动窗口类型。
+let g:floaterm_position = 'center'           "在窗口中间显示。
