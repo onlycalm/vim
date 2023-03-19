@@ -236,7 +236,7 @@ set cursorline   "高亮光标所在行。
 set hlsearch     "高亮搜索。
 set incsearch    "搜索键入时开启高亮。
 set laststatus=2 "底部状态栏始终开启，1: 关闭，2: 开启。
-set fillchars=vert:\│ "修改垂直分割符。
+set fillchars=vert:\│,eob:\  "修改为更长垂直分割符。隐藏空行首的~符号，将~替换为空格。
 "修改不同模式光标且带闪烁不闪屏，该配置适用于WSL。
 let &t_SI = "\<Esc>[5 q"
 let &t_SR = "\<Esc>[3 q"
