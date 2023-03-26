@@ -62,6 +62,12 @@
 "                 '....apps.googleusercontent.com'` ，                        "
 "                 `let g:calendar_google_client_secret = '...'` ，相应修改为  "
 "                 自己的秘钥信息，然后重启Vim。                               "
+"             12、vim-wakatime可以统计使用习惯，安装后重启Vim，将APIKey填写   "
+"                 到Vim中。                                                   "
+"             13、coc-snippets自定义代码块补全，安装后执行                    "
+"                 `CocCommand snippets.editSnippets` 在                       "
+"                 Home/.config/coc/ultisnlps目录下生成*.snippets文件，在该文  "
+"                 件内填写补全代码块，可以参考仓库中的c.snippets文件。        "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 call plug#begin('~/.vim/plugged')
@@ -89,6 +95,9 @@ Plug 'terryma/vim-expand-region'                              "快速选中配�
 Plug 'itchyny/calendar.vim'                                   "日历，可协同谷歌日历。
 Plug 'wakatime/vim-wakatime'                                  "代码行为自动统计工具。
 Plug 'voldikss/vim-floaterm'                                  "浮动终端。
+Plug 'vim-autoformat/vim-autoformat'                          "代码格式化。
+"Coc plugin.
+"neoclide/coc-snippets                                        "自定义代码块补全。
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -225,6 +234,16 @@ let g:floaterm_keymap_prev = '<Leader>tp'    "上一个终端。
 let g:floaterm_keymap_next = '<Leader>tn'    "下一个终端。
 let g:floaterm_keymap_kill = '<Leader>tk'    "关掉终端。
 
+"vim-autoformat/vim-autoformat
+"改为按键触发全文件格式化。
+noremap <leader>cf :Autoformat<CR>
+
+"neoclide/coc-snippets
+"Use <C-j> for jump to next placeholder, it's default of coc.nvim.
+let g:coc_snippet_next = '<c-j>'
+"Use <C-k> for jump to previous placeholder, it's default of coc.nvim.
+let g:coc_snippet_prev = '<c-k>'
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "基础配置                                                                     "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -236,7 +255,7 @@ set cursorline   "高亮光标所在行。
 set hlsearch     "高亮搜索。
 set incsearch    "搜索键入时开启高亮。
 set laststatus=2 "底部状态栏始终开启，1: 关闭，2: 开启。
-set fillchars=vert:\│,eob:\  "修改为更长垂直分割符。隐藏空行首的~符号，将~替换为空格。
+set fillchars=eob:\ ,vert:\│ "修改为更长垂直分割符。隐藏空行首的~符号，将~替换为空格。
 "修改不同模式光标且带闪烁不闪屏，该配置适用于WSL。
 let &t_SI = "\<Esc>[5 q"
 let &t_SR = "\<Esc>[3 q"
@@ -571,3 +590,9 @@ source ~/.cache/calendar.vim/credentials.vim
 "voldikss/vim-floaterm
 let g:floaterm_wintype = 'float'             "浮动窗口类型。
 let g:floaterm_position = 'center'           "在窗口中间显示。
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"vim-autoformat/vim-autoformat
+let g:formatdef_clangformat_google = '"clang-format -style google -"' "Google风格。
+let g:formatters_c = ['clangformat_google']
+let g:autoformat_verbosemode=1 "如果格式化失败，将错误消息输出。
+let g:autoformat_remove_trailing_spaces=1 "删除行末空格。
