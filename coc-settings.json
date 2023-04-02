@@ -14,5 +14,6 @@
     "enableSign": "true",
     "errorSign": "✘",
     "warningSign": "!"
-  }
+  },
+  "snippets.ultisnips.pythonPrompt": false
 }
