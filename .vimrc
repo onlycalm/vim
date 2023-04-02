@@ -68,7 +68,8 @@
 "                 `CocCommand snippets.editSnippets` 在                       "
 "                 Home/.config/coc/ultisnlps目录下生成*.snippets文件，在该文  "
 "                 件内填写补全代码块，可以参考仓库中的c.snippets文件。        "
-"             14、vim-autoformat插件格式化代码，将.clang-format文件拷贝到     "
+"             14、vim-autoformat插件格式化代码，选择对应版本的                "
+"                 clang-format.txt文件，改名为.clang-format，将其拷贝到       "
 "                 ~目录或工程根目录下。                                       "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
