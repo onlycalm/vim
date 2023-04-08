@@ -1,9 +1,7 @@
 ---
 BasedOnStyle: LLVM
 AlignArrayOfStructures: Right
-AlignConsecutiveAssignments: AcrossComments
 AlignConsecutiveBitFields: AcrossComments
-AlignConsecutiveDeclarations: AcrossComments
 AlignConsecutiveMacros: AcrossComments
 AllowAllArgumentsOnNextLine: false
 AllowAllParametersOfDeclarationOnNextLine: false
@@ -13,7 +11,6 @@ AllowShortFunctionsOnASingleLine: Empty
 AllowShortLambdasOnASingleLine: Empty
 AllowShortLoopsOnASingleLine: true
 AlwaysBreakTemplateDeclarations: Yes
-BitFieldColonSpacing: After
 BraceWrapping:
   AfterCaseLabel: true
   AfterControlStatement: Always
@@ -51,7 +48,6 @@ ObjCBreakBeforeNestedBlockParam: false
 PointerAlignment: Left
 QualifierAlignment: Left
 SeparateDefinitionBlocks: Always
-SpaceBeforeCpp11BracedList: true
 SpaceBeforeInheritanceColon: false
 SpaceBeforeParens: Never
 SpaceBeforeParensOptions:
