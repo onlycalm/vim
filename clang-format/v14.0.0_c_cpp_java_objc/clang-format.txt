@@ -36,7 +36,6 @@ DerivePointerAlignment: true
 EmptyLineAfterAccessModifier: Always
 EmptyLineBeforeAccessModifier: Always
 IncludeBlocks: Merge
-IndentAccessModifiers: true
 IndentCaseLabels: true
 IndentWidth: 4
 IndentWrappedFunctionNames: true
