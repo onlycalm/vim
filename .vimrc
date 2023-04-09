@@ -99,6 +99,7 @@ Plug 'itchyny/calendar.vim'                                   " 日历，可协�
 Plug 'wakatime/vim-wakatime'                                  " 代码行为自动统计工具。
 Plug 'voldikss/vim-floaterm'                                  " 浮动终端。
 Plug 'vim-autoformat/vim-autoformat'                          " 代码格式化。
+Plug 'tpope/vim-fugitive'                                     " Vim内使用git。
 " Coc plugin.
 " neoclide/coc-snippets                                       " 自定义代码块补全。
 call plug#end()
