@@ -1,13 +1,13 @@
 ---
 BasedOnStyle: LLVM
-AccessModifierOffset: -2
+AccessModifierOffset: -4
 AlignAfterOpenBracket: Align
 AlignArrayOfStructures: Left
 AlignConsecutiveAssignments: AcrossComments
 AlignConsecutiveBitFields: AcrossComments
 AlignConsecutiveDeclarations: None
 AlignConsecutiveMacros: AcrossComments
-AlignEscapedNewlines: Right
+AlignEscapedNewlines: DontAlign
 AlignOperands: Align
 AlignTrailingComments: true
 AllowAllArgumentsOnNextLine: false
@@ -56,7 +56,7 @@ BreakBeforeTernaryOperators: false
 BreakConstructorInitializers: AfterColon
 BreakInheritanceList: AfterComma
 BreakStringLiterals: true
-ColumnLimit: 120
+ColumnLimit: 80
 CommentPragmas: "^ IWYU pragma:"
 CompactNamespaces: false
 ConstructorInitializerAllOnOneLineOrOnePerLine: false
@@ -66,7 +66,7 @@ Cpp11BracedListStyle: true
 DeriveLineEnding: true
 DerivePointerAlignment: true
 DisableFormat: false
-EmptyLineAfterAccessModifier: Always
+EmptyLineAfterAccessModifier: Never
 EmptyLineBeforeAccessModifier: Always
 ExperimentalAutoDetectBinPacking: false
 FixNamespaceComments: true
@@ -147,7 +147,7 @@ SpaceBeforeCaseColon: false
 SpaceBeforeCpp11BracedList: false
 SpaceBeforeCtorInitializerColon: true
 SpaceBeforeInheritanceColon: false
-SpaceBeforeParens: Never
+SpaceBeforeParens: ControlStatements
 SpaceBeforeParensOptions:
   AfterControlStatements: false
   AfterForeachMacros: false

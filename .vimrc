@@ -120,6 +120,9 @@ inoremap <c-h> <left>
 " Insert模式下ctrl l右移光标。
 inoremap <c-l> <right>
 
+" 映射 leader + 8 键来切换高亮第80列
+nnoremap <silent> <Leader>8 :call ToggleHighlightColumn80()<CR>
+
 " NEARDTree
 nnoremap <F2> :NERDTreeToggle<CR>
 
@@ -242,8 +245,10 @@ let g:floaterm_keymap_next = '<Leader>tn'    " 下一个终端。
 let g:floaterm_keymap_kill = '<Leader>tk'    " 关掉终端。
 
 " vim-autoformat/vim-autoformat
-" 改为按键触发全文件格式化。
+" 可视模式下格式化选中行。
 noremap <leader>cf :AutoformatLine<CR>
+" 全文件格式化。
+noremap <leader>cF :Autoformat<CR>
 
 " neoclide/coc-snippets
 " Use <C-j> for jump to next placeholder, it's default of coc.nvim.
@@ -267,6 +272,21 @@ set fillchars=eob:\ ,vert:\│ " 修改为更长垂直分割符。隐藏空行�
 let &t_SI = "\<Esc>[5 q"
 let &t_SR = "\<Esc>[3 q"
 let &t_EI = "\<Esc>[1 q"
+
+" highlight ColorColumn ctermbg=gray guibg=lightgray
+" set colorcolumn=80
+
+" 定义一个函数来切换高亮第80列
+function! ToggleHighlightColumn80()
+    if &colorcolumn =~ '80'
+        " 如果当前高亮列包含80，则取消高亮。会取消所有高亮列。
+        set colorcolumn=
+    else
+        " 否则，高亮第80列
+        highlight ColorColumn ctermbg=darkgrey guibg=darkgrey
+        set colorcolumn=80
+    endif
+endfunction
 
 " 对齐
 set autoindent  " 缩进自动对齐。
@@ -470,6 +490,9 @@ inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 " <C-g>u breaks current undo, please make your own choice
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
             \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+" 映射快捷键以在浮动窗口中显示定义
+nnoremap <silent> D :call CocAction('doHover')<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " mhinz/vim-signify
