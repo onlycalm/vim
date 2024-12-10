@@ -103,6 +103,7 @@ Plug 'wakatime/vim-wakatime'                                  " 代码行为自�
 Plug 'voldikss/vim-floaterm'                                  " 浮动终端。
 Plug 'vim-autoformat/vim-autoformat'                          " 代码格式化。
 Plug 'tpope/vim-fugitive'                                     " Vim内使用git。
+Plug 'andymass/vim-matchup'                                   " 语法匹配。
 " Coc plugin.
 " neoclide/coc-snippets                                       " 自定义代码块补全。
 call plug#end()
@@ -408,6 +409,8 @@ let g:Lf_UseCache = 0
 let g:Lf_CacheDirectory = expand('~/.vimcache/')      " 设置缓存根目录。
 let g:Lf_StlSeparator = { 'left': '', 'right': '' } " 分隔符号。
 let g:Lf_ShowDevIcons = 0                             " 不显示图标。
+let g:Lf_WorkingDirectoryMode = 'AF'
+let g:Lf_RootMarkers = ['.git', '.svn', '.hg', '.project', '.root']
 
 " gtags配置。
 let g:Lf_GtagsAutoGenerate = 1                        " 自动生成gtags数据库。保存在~/.vimcache/.lfcache/gtags/。
@@ -627,3 +630,8 @@ let g:autoformat_autoindent = 0
 let g:autoformat_retab = 0
 let g:autoformat_verbosemode = 1 " 如果格式化失败，将错误消息输出。
 let g:autoformat_remove_trailing_spaces = 1 " 删除行末空格。
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"andymass/vim-matchup"
+" 启用 matchup 插件
+let g:matchup_enabled = 1
