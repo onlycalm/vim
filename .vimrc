@@ -103,7 +103,7 @@ Plug 'wakatime/vim-wakatime'                                  " 代码行为自�
 Plug 'voldikss/vim-floaterm'                                  " 浮动终端。
 Plug 'vim-autoformat/vim-autoformat'                          " 代码格式化。
 Plug 'tpope/vim-fugitive'                                     " Vim内使用git。
-Plug 'andymass/vim-matchup'                                   " 语法匹配。
+Plug 'andymass/vim-matchup'                                   " 高亮语法匹配。
 " Coc plugin.
 " neoclide/coc-snippets                                       " 自定义代码块补全。
 call plug#end()
@@ -409,8 +409,8 @@ let g:Lf_UseCache = 0
 let g:Lf_CacheDirectory = expand('~/.vimcache/')      " 设置缓存根目录。
 let g:Lf_StlSeparator = { 'left': '', 'right': '' } " 分隔符号。
 let g:Lf_ShowDevIcons = 0                             " 不显示图标。
-let g:Lf_WorkingDirectoryMode = 'AF'
-let g:Lf_RootMarkers = ['.git', '.svn', '.hg', '.project', '.root']
+let g:Lf_WorkingDirectoryMode = 'AF'                  " 自动查找根目录，未查到则用当前文件路径。
+let g:Lf_RootMarkers = ['.git', '.svn', '.hg', '.project', '.root'] " 根目录标识。
 
 " gtags配置。
 let g:Lf_GtagsAutoGenerate = 1                        " 自动生成gtags数据库。保存在~/.vimcache/.lfcache/gtags/。
@@ -420,7 +420,7 @@ let g:Lf_Gtagslabel = 'native-pygments'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " preservim/nerdcommenter
 let g:NERDCreateDefaultMappings = 0 " 不使用默认的按键映射。
-let g:NERDSpaceDelims = 1           " 注释后不添加空格。
+let g:NERDSpaceDelims = 1           " 注释后添加空格。
 let g:NERDCompactSexyComs = 1       " 支持多行注释。
 let g:NERDDefaultAlign = 'left'     " 左对齐，而不是跟随代码缩进。
 " 自定义注释格式。
@@ -509,6 +509,7 @@ let g:signify_sign_change_delete = g:signify_sign_change . g:signify_sign_delete
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " preservim/tagbar
+let g:tagbar_sort = 0               " 按定义顺序显示。
 let g:tagbar_show_linenumbers = 0   " 不显示行号。
 let g:tagbar_compact = 1            " 不显示顶部帮助信息。
 let g:tagbar_left = 0               " 显示在Vim右侧。
@@ -633,5 +634,4 @@ let g:autoformat_remove_trailing_spaces = 1 " 删除行末空格。
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "andymass/vim-matchup"
-" 启用 matchup 插件
-let g:matchup_enabled = 1
+let g:matchup_enabled = 1 " 启用 matchup 插件
