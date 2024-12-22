@@ -1,0 +1,241 @@
+# A valid snippet should starts with:
+#
+#		snippet trigger_word [ "description" [ options ] ]
+#
+# and end with:
+#
+#		endsnippet
+#
+# Snippet options:
+#
+#		b - Beginning of line.
+#		i - In-word expansion.
+#		w - Word boundary.
+#		r - Regular expression
+#		e - Custom context snippet
+#		A - Snippet will be triggered automatically, when condition matches.
+#
+# Basic example:
+#
+#		snippet emitter "emitter properties" b
+#		private readonly ${1} = new Emitter<$2>()
+#		public readonly ${1/^_(.*)/$1/}: Event<$2> = this.$1.event
+#		endsnippet
+#
+# Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
+
+#Grammar completion.
+#if-else.
+snippet if "if(){}" b
+if (${1:expression})
+{
+	${2:statements}
+}
+endsnippet
+
+snippet elif "else if(){}" b
+else if (${1:expression})
+{
+	${2:statements}
+}
+endsnippet
+
+snippet else "else{}" b
+else
+{
+	${1:statements}
+}
+endsnippet
+
+#for.
+snippet for "for(){}" b
+for (${1:expression}; ${2:condition}; ${3:expression})
+{
+	${4:statements}
+}
+endsnippet
+
+#while.
+snippet while "while(){}" b
+while (${${1:condition})
+{
+	${2:statements}
+}
+endsnippet
+
+#switch.
+snippet switch "switch(){}" b
+switch (${1:condition})
+{
+	case ${2:state}:
+		${3:statements}
+		break;
+
+	default:
+		${4:statements}
+		break;
+}
+endsnippet
+
+#function.
+snippet function "Function(){}" b
+${1:RtnVal} Function(${2:VarTyp} ${3:Var})
+{
+	${4:statements}
+}
+endsnippet
+
+#Comment completion.
+#Do nothing.
+snippet do "/* Do nothing. */" b
+/* Do nothing. */
+endsnippet
+
+#Doxygen.
+#file.
+snippet doxyfile "/** @file */" b
+/**
+ * @file 文件名（*.h/*.c）
+ * @brief 该模块功能的简介。
+ * @details 使用该模块有哪些细节注意等。
+ * @author 创建该文件的人名。
+ * @data 该文件的创建日期（2020-03-10）。
+ * @version 文件或模块版本号（V1.0.0）。
+ * @copyright 版权所属公司。
+ */
+endsnippet
+
+#function.
+snippet doxyFn "/** @fn */" b
+/**
+ * @fn 函数名
+ * @brief 简述函数功能。
+ * @details 关于函数更详细的细节补充描述。
+ * @param[in] 参数名 参数注解。
+ * - 值1 注解。
+ * - 值2 注解。
+ * @param[out] 参数名 参数注解。
+ * @param[in, out] 参数名 参数注解。
+ * @return 函数返回注解。
+ * @retval 对返回值注解。
+ * @see 扇入：调用了该函数的上级函数（扇入高表示该函数复用性好）。
+ * @see 扇出：该函数里调用了哪些下级函数（扇出高表示该函数复杂度高）。
+ * @note 其他注解。
+ * @attention 注意事项。
+ * @par example:
+ * @code
+ * //代码示例。
+ * @endcode
+ */
+endsnippet
+
+#function.
+snippet doxyfn "/** @fn */" b
+/**
+ * @fn 函数名。
+ * @brief 简述函数功能。
+ * @param[in] 参数名 参数注解。
+ * - 值1 注解。
+ * - 值2 注解。
+ * @param[out] 参数名 参数注解。
+ * @param[in, out] 参数名 参数注解。
+ * @return 函数返回注解。
+ * @retval 对返回值的说明
+ */
+endsnippet
+
+#define.
+snippet doxyDef "/** @def */" b
+/**
+ * @def 宏函数名。
+ * @brief 简述函数功能。
+ * @details 关于函数更详细的细节补充描述。
+ * @param[in] 参数名 参数注解。
+ * - 值1 注解。
+ * - 值2 注解。
+ * @param[out] 参数名 参数注解。
+ * @param[in, out] 参数名 参数注解。
+ * @return 函数返回注解。
+ * @retval 对返回值的说明。
+ * @see 扇入：调用了该函数的上级函数（扇入高表示该函数复用性好）。
+ * @see 扇出：该函数里调用了哪些下级函数（扇出高表示该函数复杂度高）。
+ * @note 其他注解。
+ * @attention 注意事项。
+ * @par example:
+ * @code
+ * //代码示例。
+ * @endcode
+ */
+endsnippet
+
+#define.
+snippet doxydef "/** @def */" b
+/**
+ * @def 宏函数名。
+ * @brief 简述宏函数功能。
+ * @param[in] 参数名 参数注解。
+ * - 值1 注解。
+ * - 值2 注解。
+ * @param[out] 参数名 参数注解。
+ * @param[in, out] 参数名 参数注解。
+ * @return 函数返回注解。
+ * @retval 对返回值的说明。
+ */
+endsnippet
+
+#enum.
+snippet doxyEnum "/** @enum */" b
+/**
+ * @enum 枚举名。
+ * @brief 简介枚举用途。
+ * @details 提示一些注意事项或必要的技术细节。
+ * @note 其他注解。
+ * @attention 注意事项。
+ */
+endsnippet
+
+#enum.
+snippet doxyenum "/** @enum */" b
+/**
+ * @enum 枚举名。
+ * @brief 简介枚举用途。
+ */
+endsnippet
+
+#union.
+snippet doxyUnion "/** @union */" b
+/**
+ * @union 联合名。
+ * @brief 简介联合用途。
+ * @details 提示一些注意事项或必要的技术细节。
+ * @note 其他注解。
+ * @attention 注意事项。
+ */
+endsnippet
+
+#union.
+snippet doxyunion "/** @union */" b
+/**
+ * @union 联合名。
+ * @brief 简介联合用途。
+ */
+endsnippet
+
+#struct.
+snippet doxyStruct "/** @struct */" b
+/**
+ * @struct 结构体名。
+ * @brief 简介结构体用途。
+ * @details 提示一些注意事项或必要的技术细节。
+ * @note 其他注解。
+ * @attention 注意事项。
+ */
+endsnippet
+
+#struct.
+snippet doxystruct "/** @struct */" b
+/**
+ * @struct 结构体名。
+ * @brief 简介结构体用途。
+ */
+endsnippet
