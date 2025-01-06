@@ -74,6 +74,8 @@
 "                 clang-format.txt文件，改名为.clang-format，将其拷贝到       "
 "                 ~目录或工程根目录下。安装对应版本的clang-format，安装复杂   "
 "                 请参考文档。                                                "
+"             15、vim-ai-doubao配置通义千问AI，执行`:AIConfigEdit` 打开json   "
+"                 配置文件，将API Key填写到tongyi对应的Token字段。            "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 call plug#begin('~/.vim/plugged')
@@ -104,6 +106,7 @@ Plug 'voldikss/vim-floaterm'                                  " 浮动终端。
 Plug 'vim-autoformat/vim-autoformat'                          " 代码格式化。
 Plug 'tpope/vim-fugitive'                                     " Vim内使用git。
 Plug 'andymass/vim-matchup'                                   " 高亮语法匹配。
+Plug 'chenxuan520/vim-ai-doubao'                              " AI.
 " Coc plugin.
 " neoclide/coc-snippets                                       " 自定义代码块补全。
 call plug#end()
@@ -635,3 +638,7 @@ let g:autoformat_remove_trailing_spaces = 1 " 删除行末空格。
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "andymass/vim-matchup"
 let g:matchup_enabled = 1 " 启用 matchup 插件
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"chenxuan520/vim-ai-doubao
+let g:vim_ai_name="tongyi"
