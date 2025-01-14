@@ -107,6 +107,8 @@ Plug 'vim-autoformat/vim-autoformat'                          " 代码格式化�
 Plug 'tpope/vim-fugitive'                                     " Vim内使用git。
 Plug 'andymass/vim-matchup'                                   " 高亮语法匹配。
 Plug 'chenxuan520/vim-ai-doubao'                              " AI.
+Plug 'glts/vim-radical'                                       " 进制转换。
+Plug 'glts/vim-magnum'                                        " 大整数库，vim-radical依赖此。
 " Coc plugin.
 " neoclide/coc-snippets                                       " 自定义代码块补全。
 call plug#end()
@@ -259,6 +261,13 @@ noremap <leader>cF :Autoformat<CR>
 let g:coc_snippet_next = '<c-j>'
 " Use <C-k> for jump to previous placeholder, it's default of coc.nvim.
 let g:coc_snippet_prev = '<c-k>'
+
+" glts/vim-radical
+" gA: 显示进制数。
+" crd: 光标下数转为十进制。
+" crx: 光标下数转为十六进制。
+" cro: 光标下数转为八进制。
+" crb: 光标下数转为二进制。
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 基础配置                                                                    "
@@ -640,5 +649,5 @@ let g:autoformat_remove_trailing_spaces = 1 " 删除行末空格。
 let g:matchup_enabled = 1 " 启用 matchup 插件
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"chenxuan520/vim-ai-doubao
+" chenxuan520/vim-ai-doubao
 let g:vim_ai_name="tongyi"
