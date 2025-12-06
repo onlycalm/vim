@@ -2,55 +2,55 @@
 "File: .vimrc                                                                 "
 "author: Calm                                                                 "
 "Data: 2021-05-22                                                             "
-"Testing environment: Ubuntu v20.04 LTS                                       "
+"Testing environment: Ubuntu v22.04 LTS                                       "
 "                     vim v8.2.4919                                           "
-"                     nodejs v20.17.1                                         "
+"                     nodejs v22.21.0                                         "
 "Description: 正确使用此配置文件请按以下操作:                                 "
 "             1、将此文件拷贝到~目录（即home目录）下。                        "
 "             2、将Github上junegunn/vim-plug插件的plug.vim拷贝到              "
-"                ~/.vim/autoload，目录下，没有则新建。在vim中执行             "
+"                ~/.vim/autoload 目录下，没有则新建。在vim中执行              "
 "                ':PlugInstall' 进行插件安装。                                "
 "             3、建议在Windows Terminal终端的Windows PowerShell中运行WSL，    "
 "                运行Vim，将终端字体设置为Hack-Regular，否则ailine和NEARDTree "
 "                无法正常显示。可在Github上项目powerline/fonts下载安装。      "
-"                字体大小建议设置为10号。Linux下将需要的字体文件夹拷贝到      "
+"                字体大小建议设置为10号。Linux下将需要的字体用sudo权限拷贝到  "
 "                ~/.local/share/fonts 目录然后修改Terminal的字体配置。        "
-"             4、为了使用Leaderf，需要给Ubuntu安装gcc`sudo apt-get install    "
+"             4、为了使用Leaderf，需要给Ubuntu安装gcc`sudo apt install        "
 "                gcc`以及python-dev`根据安装的python版本对应安装，比如        "
-"                python3 v3.8.5，则执行sudo apt-get install python3.8-dev`。  "
-"                执行指令前最好先升级apt-get到新版本`apt-get update`，否则    "
+"                python3 v3.8.5，则执行sudo apt install python3.8-dev`。      "
+"                执行指令前最好先升级apt到新版本`apt update`，否则            "
 "                可能安装失败。Leaderf rg功能依赖于ripgrep，需要在linux中执行 "
-"                指令安装`sudo apt-get install ripgrep`。Leaderf可以自动      "
+"                指令安装`sudo apt install ripgrep`。Leaderf可以自动          "
 "                管理gtags，可以通过gtags进行快捷搜索，在Ubuntu中安装gtags    "
-"                `sudo apt-get install global`。默认将gtags产物文件保存在     "
+"                `sudo apt install global`。默认将gtags产物文件保存在         "
 "                ~/.vimcache/.lfcache/gtags/ 目录下，记得定期清除。           "
 "                Leaderf function对函数的搜索依赖Ctags。                      "
 "                Leaderf需要vim支持python3特性，通过源码安装时要注意。        "
 "             5、vim-gutentags自动管理Ctags，在Ubuntu上安装Ctags`sudo         "
-"                apt-get install ctags)。默认将gtags产物文件保存在            "
+"                apt install universal-ctags` 。默认将gtags产物文件保存在     "
 "                ~/.vimcache/.gtcache/ 目录下，记得定期清除。                 "
 "             6、Coc运行需要安装node，Ubuntu下依次执行运行指令                "
-"                执行指令安装curl `sudo apt-get install curl` ，继续安装node，"
+"                执行指令安装curl `sudo apt install curl` ，继续安装node，    "
 "                如果权限不够则切到root用户执行， `sudo curl -sL              "
-"                https://deb.nodesource.com/setup_20.x | sudo bash -` ，      "
-"                这里安装的是v20版本，需要其他版本可以修改指令，接着执行指令。"
-"                `sudo apt-get install nodejs` 。                             "
+"                https://deb.nodesource.com/setup_22.x | sudo bash -` ，      "
+"                这里安装的是v22版本，需要其他版本可以修改指令，接着执行指令。"
+"                `sudo apt install nodejs` 。                                 "
 "                需要安装cmake用于生成compile_commands.json                   "
 "                文件，使其找到头文件和源文件。在Ubuntu中安装cmake输入指      "
-"                令`sudo apt-get install cmake`。Coc既补全又检查语法。        "
+"                令`sudo apt install cmake`。Coc既补全又检查语法。            "
 "                Coc会在 ~/.config/coc 目录存放临时文件。                     "
 "                还需要为coc部署yarn，依次执行指令 `sudo npm install -g yarn` "
 "                `cd ~/.vim/plugged/coc.nvim/` `yarn install` `yarn build`    "
 "             7、coc-nvim使用clangd进行c/c++语法检查，因此在子系统Ubuntu下    "
-"                执行`sudo apt-get install clangd`安装。clangd会将缓存文件    "
+"                执行`sudo apt install clangd`安装。clangd会将缓存文件        "
 "                放在 ~/.clangd 目录下，记得定期删除。                        "
 "                安装好coc.nvim插件后在vim中输入 `CocConfig` 会自动创建       "
 "                coc-settings.json文件，将该仓库内的同名文件内容拷贝进去。    "
 "             8、startify的sessions目录默认为 ~/.vim/session 。               "
 "             9、cmake指定gcc或clang编译c/c++，如使用clang编译需要给子系统    "
-"                Ubuntu安装clang，指令为`sudo apt-get install clang`。        "
+"                Ubuntu安装clang，指令为`sudo apt install clang`。            "
 "             10、运行vim-translator需要执行指令                              "
-"                `sudo apt-get install python3-pip`安装pip，之后执行指令      "
+"                `sudo apt install python3-pip`安装pip，之后执行指令          "
 "                `pip install pysocks`安装pysocks。                           "
 "             11、为了使itchyny/calendar.vim绑定Google Calendar，在终端       "
 "                 执行三条指令 `mkdir -p ~/.cache/calendar.vim/ &&            "
@@ -100,7 +100,7 @@ Plug 'mg979/vim-visual-multi', {'branch': 'master'}           " 多光标操作�
 Plug 'itchyny/vim-cursorword'                                 " 实时高亮同光标下字符串。
 Plug 'vim-scripts/a.vim'                                      " c/h跳转。
 Plug 'terryma/vim-expand-region'                              " 快速选中配对符内代码块。
-Plug 'itchyny/calendar.vim'                                   " 日历，可协同谷歌日历。
+" Plug 'itchyny/calendar.vim'                                   " 日历，可协同谷歌日历。
 Plug 'wakatime/vim-wakatime'                                  " 代码行为自动统计工具。
 Plug 'voldikss/vim-floaterm'                                  " 浮动终端。
 Plug 'vim-autoformat/vim-autoformat'                          " 代码格式化。
@@ -109,6 +109,8 @@ Plug 'andymass/vim-matchup'                                   " 高亮语法匹�
 Plug 'chenxuan520/vim-ai-doubao'                              " AI.
 Plug 'glts/vim-radical'                                       " 进制转换。
 Plug 'glts/vim-magnum'                                        " 大整数库，vim-radical依赖此。
+Plug 'github/copilot.vim'                                     " Copilot插件。
+Plug 'Eliot00/git-lens.vim'                                   " 显示当前行git blame。
 " Coc plugin.
 " neoclide/coc-snippets                                       " 自定义代码块补全。
 call plug#end()
@@ -627,10 +629,10 @@ hi CursorWord1 ctermbg=darkgrey guibg=darkgrey term=none cterm=none gui=none
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " itchyny/calendar.vim
-let g:calendar_date_endian = "big" " 日期格式。
-let g:calendar_google_calendar = 1
-let g:calendar_google_task = 1
-source ~/.cache/calendar.vim/credentials.vim
+" let g:calendar_date_endian = "big" " 日期格式。
+" let g:calendar_google_calendar = 1
+" let g:calendar_google_task = 1
+" source ~/.cache/calendar.vim/credentials.vim
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " voldikss/vim-floaterm
@@ -651,3 +653,7 @@ let g:matchup_enabled = 1 " 启用 matchup 插件
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " chenxuan520/vim-ai-doubao
 let g:vim_ai_name="tongyi"
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Eliot00/git-lens.vim
+let g:GIT_LENS_ENABLED = 1
