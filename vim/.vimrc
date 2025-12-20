@@ -76,6 +76,11 @@
 "                 请参考文档。                                                "
 "             15、vim-ai-doubao配置通义千问AI，执行`:AIConfigEdit` 打开json   "
 "                 配置文件，将API Key填写到tongyi对应的Token字段。            "
+"             16、授权copilot插件，执行`:Copilot setup` ，根据提示登录GitHub  "
+"             17、vimspector调试插件需要安装调试适配器，执行指令              "
+"                 `:VimspectorInstall vscode-cpptools` 安装C/C++调试适配器。  "
+"                 执行指令 `:VimspectorInstall debugpy` 安装Python调试适配器。"
+"                 将该仓库内的 `.vimspector.json` 拷贝到工程根目录。          "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 call plug#begin('~/.vim/plugged')
@@ -111,6 +116,7 @@ Plug 'glts/vim-radical'                                       " 进制转换。
 Plug 'glts/vim-magnum'                                        " 大整数库，vim-radical依赖此。
 Plug 'github/copilot.vim'                                     " Copilot插件。
 Plug 'Eliot00/git-lens.vim'                                   " 显示当前行git blame。
+Plug 'puremourning/vimspector'                                " Debug调试。
 " Coc plugin.
 " neoclide/coc-snippets                                       " 自定义代码块补全。
 call plug#end()
@@ -271,6 +277,51 @@ let g:coc_snippet_prev = '<c-k>'
 " cro: 光标下数转为八进制。
 " crb: 光标下数转为二进制。
 
+" puremourning/vimspector
+" 退出调试界面。
+nmap <silent> <leader>dq :VimspectorReset<CR>
+" 停止调试。
+nmap <silent> <leader>ds <Plug>VimspectorStop
+" 继续调试/开始调试。
+nmap <silent> <leader>dc <Plug>VimspectorContinue
+" 重启调试。
+nmap <silent> <leader>dr <Plug>VimspectorRestart
+" 暂停。
+nmap <silent> <leader>dp <Plug>VimspectorPause
+" 断点。
+nmap <silent> <leader>db <Plug>VimspectorToggleBreakpoint
+" 函数断点。
+nmap <silent> <leader>df <Plug>VimspectorAddFunctionBreakpoint
+" 条件断点。
+nmap <silent> <leader>di <Plug>VimspectorToggleConditionalBreakpoint
+" 将光标移动到当前文件的上一个断点。
+nmap <silent> <leader>dk <Plug>VimspectorJumpToPreviousBreakpoint
+" 将光标移动到当前文件中的下一个断点。
+nmap <silent> <leader>dj <Plug>VimspectorJumpToNextBreakpoint
+" 运行至光标处。
+nmap <silent> <leader>dt <Plug>VimspectorRunToCursor
+" 查看表达式值。
+nmap <leader>dw :VimspectorWatch<Space>
+" 单步跳过。
+nmap <F7> <Plug>VimspectorStepOver
+" 单步进入。
+nmap <F8> <Plug>VimspectorStepInto
+" 单步跳出。
+nmap <F9> <Plug>VimspectorStepOut
+
+" 复位程序计数器到当前光标行。
+" <Plug>VimspectorGoToCurrentLine
+" 显示反汇编窗口。
+" <Plug>VimspectorDisassemble
+" 在当前调用栈中向上移动一帧。
+" <Plug>VimspectorUpFrame
+" 在当前调用栈中向下移动一帧。
+" <Plug>VimspectorDownFrame
+" 将光标移动到当前帧中的程序计数器。
+" <Plug>VimspectorJumpToProgramCounter
+" 在弹窗中评估光标（或视觉）下的表达。
+" <Plug>VimspectorBalloonEval
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 基础配置                                                                    "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -328,6 +379,9 @@ set backspace=2    " 正常处理indent, eol, start等。
 set termencoding=utf-8                                  " Vim所工作的终端字符编码格式。
 set encoding=utf8                                       " Vim内部使用的字符编码格式。
 set fileencodings=utf8,ucs-bom,gbk,cp936,gb2312,gb18030 " 自动探测编码方式顺序。
+
+" c/c++文件格式化选项调整，防止换行自动注释。
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "插件配置                                                                     "

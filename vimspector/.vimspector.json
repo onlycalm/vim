@@ -1,0 +1,12 @@
+{
+  "configurations": {
+    "GDB Debug": {
+      "adapter": "vscode-cpptools",
+      "configuration": {
+        "request": "launch",
+        "program": "${workspaceFolder}/build/app",  // 替换为你的可执行文件路径
+        "cwd": "${workspaceFolder}"
+      }
+    }
+  }
+}
