@@ -117,6 +117,7 @@ Plug 'glts/vim-magnum'                                        " 大整数库，v
 Plug 'github/copilot.vim'                                     " Copilot插件。
 Plug 'Eliot00/git-lens.vim'                                   " 显示当前行git blame。
 Plug 'puremourning/vimspector'                                " Debug调试。
+Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' } " 字符查找。
 " Coc plugin.
 " neoclide/coc-snippets                                       " 自定义代码块补全。
 call plug#end()
@@ -154,6 +155,7 @@ nnoremap <silent> <leader>fF :Leaderf function<CR>
 nnoremap <silent> <leader>fg :Leaderf rg<CR>
 " 搜索行。
 nnoremap <silent> <leader>fl :Leaderf line<CR>
+" 搜索时编辑状态下按ctrl + i可选择搜索结果，此时按x和v分屏并打开选择的文件。
 
 " 通过Leaderf rg在当前缓存中搜索光标下的字符串。
 noremap <leader>f<c-b> :<C-U><C-R>=printf("Leaderf! rg --current-buffer -e %s ", expand("<cword>"))<CR><CR>
@@ -300,6 +302,8 @@ nmap <silent> <leader>dk <Plug>VimspectorJumpToPreviousBreakpoint
 nmap <silent> <leader>dj <Plug>VimspectorJumpToNextBreakpoint
 " 运行至光标处。
 nmap <silent> <leader>dt <Plug>VimspectorRunToCursor
+" 查看断点窗口。
+nmap <Leader>dB <Plug>VimspectorBreakpoints
 " 查看表达式值。
 nmap <leader>dw :VimspectorWatch<Space>
 " 单步跳过。
@@ -525,8 +529,6 @@ hi CocWarningHighlight cterm=underline gui=underline
 let g:airline#extensions#coc#enabled = 1
 let airline#extensions#coc#error_symbol = '✘:'
 let airline#extensions#coc#warning_symbol = '!:'
-let airline#extensions#coc#stl_format_err = '%E{[%e(#%fe)]}'
-let airline#extensions#coc#stl_format_warn = '%W{[%w(#%fw)]}'
 
 " 使用tab键触发补全。
 inoremap <silent><expr> <TAB>
@@ -711,3 +713,15 @@ let g:vim_ai_name="tongyi"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Eliot00/git-lens.vim
 let g:GIT_LENS_ENABLED = 1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" puremourning/vimspector
+let g:vimspector_sign_priority = {
+  \    'vimspectorBP':          10,
+  \    'vimspectorBPCond':      10,
+  \    'vimspectorBPLog':       10,
+  \    'vimspectorBPDisabled':  10,
+  \    'vimspectorNonActivePC': 10,
+  \    'vimspectorPC':          999,
+  \    'vimspectorPCBP':        999,
+  \ }
